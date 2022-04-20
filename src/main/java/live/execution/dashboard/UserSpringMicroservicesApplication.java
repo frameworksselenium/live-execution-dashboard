@@ -8,7 +8,10 @@ public class UserSpringMicroservicesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserSpringMicroservicesApplication.class, args);
-		System.out.println("Hello World");
+		System.out.println("Hello World Spring World");
 	}
 
+	public static void notification(){
+		System.out.println("notification Message");
+	}
 }
