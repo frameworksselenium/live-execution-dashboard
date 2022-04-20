@@ -11,4 +11,7 @@ public class UserSpringMicroservicesApplication {
 		System.out.println("Hello World Spring World");
 	}
 
+	public static void notification(){
+		System.out.println("notification Message");
+	}
 }
