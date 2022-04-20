@@ -14,4 +14,8 @@ public class UserSpringMicroservicesApplication {
 	public static void notification(){
 		System.out.println("notification Message");
 	}
+
+	public static void notification2(){
+		System.out.println("notification Message");
+	}
 }
