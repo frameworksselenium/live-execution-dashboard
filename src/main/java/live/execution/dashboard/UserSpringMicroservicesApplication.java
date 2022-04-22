@@ -8,15 +8,6 @@ public class UserSpringMicroservicesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserSpringMicroservicesApplication.class, args);
-		System.out.println("Hello World Spring World");
+		System.out.println("Hello Spring World");
 	}
-
-	public static void notification(){
-		System.out.println("notification Message");
-	}
-
-	public static void notification2(){
-		System.out.println("notification Message2");
-	}
-
 }
