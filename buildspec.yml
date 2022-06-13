@@ -39,7 +39,7 @@ phases:
   build:
     commands:
       - mvn test
-      - mvn install
+      - mvn clean package
       # - command
       # - command
       #post_build:
@@ -56,7 +56,7 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-    - target/live-execution-dashboard-0.0.1-SNAPSHOT.jar
+    - target/live-dashboard.jar
     # - location
     #name: $(date +%Y-%m-%d)
     #discard-paths: yes
