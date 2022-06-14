@@ -5,6 +5,8 @@ import live.execution.dashboard.services.ExecutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,11 @@ public class ExecutionController {
     @PostMapping("/addExecution")
     public Execution addNewExecution(@RequestBody Execution execution){
         return executionService.addExecution(execution);
+    }
+
+    @GetMapping("/getMachineIP")
+    public String getMachineIP() throws UnknownHostException {
+        return Inet4Address.getLocalHost().getHostAddress();
     }
 
 }
