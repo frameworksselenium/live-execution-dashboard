@@ -38,7 +38,7 @@ phases:
       # - command
   build:
     commands:
-      - mvn -Dtest=ServiceUnitTest test install
+      - mvn -Dtest=ServiceUnitTest test install sonar:sonar
       # - command
       # - command
       #post_build:

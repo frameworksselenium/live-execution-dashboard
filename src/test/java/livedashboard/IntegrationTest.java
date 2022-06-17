@@ -1,7 +1,5 @@
 package livedashboard;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import live.execution.dashboard.beans.Execution;
 import org.json.JSONException;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -27,7 +25,7 @@ public class IntegrationTest {
 		System.out.println("Started IntegrationTest getAllExecutionsIntegrationTest");
 
 		TestRestTemplate testRestTemplate = new TestRestTemplate();
-		ResponseEntity<String> response = testRestTemplate.getForEntity("http://localhost:8089/getExecution", String.class);
+		ResponseEntity<String> response = testRestTemplate.getForEntity("http://3.90.191.232:8089/getExecution", String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 		String noOfExecutions = String.valueOf(response.getBody().length());
@@ -48,7 +46,7 @@ public class IntegrationTest {
 				"    \"executionDate\": \"05/05/2022\"\n" +
 				"}";
 		TestRestTemplate testRestTemplate = new TestRestTemplate();
-		ResponseEntity<String> response = testRestTemplate.getForEntity("http://localhost:8089/getExecution/1", String.class);
+		ResponseEntity<String> response = testRestTemplate.getForEntity("http://3.90.191.232/getExecution/1", String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 		JSONAssert.assertEquals(expectedValue, response.getBody(), false);
@@ -73,7 +71,7 @@ public class IntegrationTest {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		HttpEntity<Execution> request = new HttpEntity<Execution>(country, headers);
-		ResponseEntity<String> response = testRestTemplate.postForEntity("http://localhost:8089/addExecution", request, String.class);
+		ResponseEntity<String> response = testRestTemplate.postForEntity("http://3.90.191.232:8089/addExecution", request, String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 
