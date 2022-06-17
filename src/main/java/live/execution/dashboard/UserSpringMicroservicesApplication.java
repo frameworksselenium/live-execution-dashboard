@@ -10,4 +10,5 @@ public class UserSpringMicroservicesApplication {
 		SpringApplication.run(UserSpringMicroservicesApplication.class, args);
 		System.out.println("Hello Spring World");
 	}
+
 }
