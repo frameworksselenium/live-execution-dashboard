@@ -29,6 +29,11 @@ pipeline{
             sh "mvn sonar:sonar"
         }
       }
+      stage('UnitTesting'){
+          steps{
+              sh "mvn -Dtest=ServiceUnitTest test"
+          }
+      }
       stage('UploadArtifactsintoNexus'){
         steps{
             sh "mvn deploy"
@@ -39,6 +44,11 @@ pipeline{
             sshagent(['ed833a5b-4248-40cd-b77a-1c4699baaedd']) {
                 sh "scp -o StrictHostKeyChecking=no target/live-execution-dashboard-0.0.1-SNAPSHOT.war ec2-user@18.206.176.58:/opt/apache-tomcat-9.0.64/webapps/"
             }
+        }
+      }
+      stage('FunctionalTesting'){
+        steps{
+            sh "mvn test -Dtest=IntegrationTest"
         }
       }
     }
