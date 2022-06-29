@@ -1,0 +1,46 @@
+pipeline{
+
+    agent any
+
+    tools {
+     maven 'maven3.6.2'
+    }
+
+    options{
+        //Add the timestamp to the console output
+        timestamps()
+        //Discard old buids
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3'))
+    }
+    stages{
+
+      stage('CheckOutCode'){
+        steps{
+ 	        git branch: 'master', credentialsId: '4310e204-6e15-49c8-aa3e-4d63aef877d3', url: 'https://github.com/devops1github1/maven-web-application-development.git'
+        }
+      }
+      stage('Build'){
+       steps{
+        sh "mvn clean package"
+       }
+      }
+      stage('ExecuteSonarqubeReport'){
+        steps{
+            sh "mvn sonar:sonar"
+        }
+      }
+      stage('UploadArtifactsintoNexus'){
+        steps{
+            sh "mvn deploy"
+        }
+      }
+      stage('DeployAppIntoTomcatServer'){
+        steps{
+            sshagent(['ed833a5b-4248-40cd-b77a-1c4699baaedd']) {
+                sh "scp -o StrictHostKeyChecking=no live-execution-dashboard-0.0.1-SNAPSHOT.jar ec2-user@18.206.176.58:/opt/apache-tomcat-9.0.64/webapps/"
+            }
+        }
+      }
+    }
+
+}
