@@ -16,7 +16,7 @@ pipeline{
 
       stage('CheckOutCode'){
         steps{
- 	        git branch: 'master', credentialsId: '4310e204-6e15-49c8-aa3e-4d63aef877d3', url: 'https://github.com/devops1github1/maven-web-application-development.git'
+ 	        git branch: 'krishna', credentialsId: 'dda4164d-b839-423d-9d4e-ebf5676b26a9', url: 'https://github.com/frameworksselenium/live-execution-dashboard.git'
         }
       }
       stage('Build'){
