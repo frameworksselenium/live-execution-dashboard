@@ -19,11 +19,11 @@ pipeline{
  	        git branch: 'krishna', credentialsId: 'dda4164d-b839-423d-9d4e-ebf5676b26a9', url: 'https://github.com/frameworksselenium/live-execution-dashboard.git'
         }
       }
-      stage('Build'){
-       steps{
-        sh "mvn clean package"
-       }
-      }
+      //stage('Build'){
+      // steps{
+      //  sh "mvn clean package"
+      // }
+     // }
       stage('ExecuteSonarqubeReport'){
         steps{
             sh "mvn sonar:sonar"
@@ -52,10 +52,10 @@ pipeline{
         }
       }
       stage('PerformanceTesting'){
-              steps{
-                  sh "mvn test -Dtest=IntegrationTest"
-              }
-            }
+          steps{
+              sh "mvn test -Dtest=IntegrationTest"
+          }
+      }
     }
 
 }
