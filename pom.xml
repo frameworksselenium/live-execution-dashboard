@@ -86,6 +86,7 @@
 	</distributionManagement>
 
 	<build>
+		<finalName>live-execution-dashboard</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
