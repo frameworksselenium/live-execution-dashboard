@@ -37,7 +37,7 @@ pipeline{
       stage('DeployAppIntoTomcatServer'){
         steps{
             sshagent(['82acc154-3acf-4823-9d01-d7ade13f5d57']) {
-                sh "scp -o StrictHostKeyChecking=no target/live-execution-dashboard-0.0.1-SNAPSHOT.jar ec2-user@18.206.176.58:/opt/live-app"
+                sh "scp -o StrictHostKeyChecking=no target/live-execution-dashboard-0.0.1-SNAPSHOT.jar ec2-user@18.206.176.58:/live-app"
             }
 
         }
