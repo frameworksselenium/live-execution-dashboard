@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="live-execution-dashboard" target="8" />
+      <module name="live-execution-dashboard" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
