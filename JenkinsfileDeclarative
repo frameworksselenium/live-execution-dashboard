@@ -31,7 +31,7 @@ pipeline{
       }
       stage('UploadArtifactsintoNexus'){
         steps{
-            sh "mvn deploy"
+            sh "mvn -DskipTests=true deploy"
         }
       }
       stage('DeployAppIntoTomcatServer'){
