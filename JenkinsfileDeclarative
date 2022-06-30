@@ -26,14 +26,14 @@ pipeline{
      // }
       stage('ExecuteSonarqubeReport'){
         steps{
-            sh "mvn sonar:sonar"
+            sh "mvn -Dtest=ServiceUnitTest test install sonar:sonar"
         }
       }
-      stage('UnitTesting'){
-          steps{
-              sh "mvn -Dtest=ServiceUnitTest test"
-          }
-      }
+     // stage('UnitTesting'){
+      //    steps{
+      //        sh "mvn -Dtest=ServiceUnitTest test"
+      //    }
+      //}
       stage('UploadArtifactsintoNexus'){
         steps{
             sh "mvn deploy"
