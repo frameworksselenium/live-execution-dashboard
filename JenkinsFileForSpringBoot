@@ -19,11 +19,11 @@ pipeline {
                 sh "mvn -Dtest=ServiceUnitTest test install sonar:sonar"
             }
         }
-        stage('UploadArtifactsintoNexus'){
-            steps{
-                sh "mvn -DskipTests=true deploy"
-            }
-        }
+        //stage('UploadArtifactsintoNexus'){
+         //   steps{
+           //     sh "mvn -DskipTests=true deploy"
+           // }
+        //}
         stage('Build Docker image'){
            steps {
                echo "Hello Java Express"
