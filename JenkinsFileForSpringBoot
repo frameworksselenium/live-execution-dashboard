@@ -62,7 +62,7 @@ pipeline {
         stage('ExecuteUIFunctionalTest'){
             steps{
                 script{
-                    build job" 'Agile-add',
+                    build job" 'Agile-bdd',
                     parameters:[
                         [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
                         [$class: 'StringParameterValue', name: 'Browser', value: 'CH']
