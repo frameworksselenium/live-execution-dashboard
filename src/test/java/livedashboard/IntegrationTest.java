@@ -25,7 +25,7 @@ public class IntegrationTest {
 		System.out.println("Started IntegrationTest getAllExecutionsIntegrationTest");
 
 		TestRestTemplate testRestTemplate = new TestRestTemplate();
-		ResponseEntity<String> response = testRestTemplate.getForEntity("http://18.206.176.58:8089/getExecution", String.class);
+		ResponseEntity<String> response = testRestTemplate.getForEntity("http://3.94.143.231:8089/getExecution", String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 		String noOfExecutions = String.valueOf(response.getBody().length());
@@ -46,7 +46,7 @@ public class IntegrationTest {
 				"    \"executionDate\": \"05/05/2022\"\n" +
 				"}";
 		TestRestTemplate testRestTemplate = new TestRestTemplate();
-		ResponseEntity<String> response = testRestTemplate.getForEntity("http://18.206.176.58:8089/getExecution/1", String.class);
+		ResponseEntity<String> response = testRestTemplate.getForEntity("http://http://3.94.143.231:8089/getExecution/1", String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 		JSONAssert.assertEquals(expectedValue, response.getBody(), false);
@@ -71,7 +71,7 @@ public class IntegrationTest {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		HttpEntity<Execution> request = new HttpEntity<Execution>(country, headers);
-		ResponseEntity<String> response = testRestTemplate.postForEntity("http://18.206.176.58:8089/addExecution", request, String.class);
+		ResponseEntity<String> response = testRestTemplate.postForEntity("http://3.94.143.231:8089/addExecution", request, String.class);
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getBody());
 
