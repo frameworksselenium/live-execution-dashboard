@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Compile and Clean') {
             steps {
-                // Run Maven on a Unix agent.
                 sh "mvn clean compile"
             }
         }
@@ -15,7 +14,7 @@ pipeline {
                 sh "mvn clean -DskipTests=true package"
             }
         }
-        stage('ExecuteUnitTestAndSonarqubeReport'){
+        stage('ExecuteUnitTest && SonarqubeReport'){
             steps{
                 sh "mvn -Dtest=ServiceUnitTest test install sonar:sonar"
             }
@@ -25,7 +24,7 @@ pipeline {
                 sh "mvn -DskipTests=true deploy"
             }
         }
-        stage('Build Docker image'){
+     /*  stage('Build Docker image'){
             steps {
                 echo "Hello Java Express"
                 sh 'ls'
@@ -49,10 +48,33 @@ pipeline {
                 sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
             }
         }
-
         stage('Archving') {
             steps {
                  archiveArtifacts '**/target/*.jar'
+            }
+        }
+        stage('ExecuteAPIFunctionalTest'){
+            steps{
+                    sh "mvn -Dtest=IntegrationTest test"
+                }
+            }
+        }*/
+        stage('ExecuteUIFunctionalTest'){
+            steps{
+                script{
+                    build job" 'Agile-add',
+                    parameters:[
+                        [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
+                        [$class: 'StringParameterValue', name: 'Browser', value: 'CH']
+                    ]
+                }
+            }
+        }
+        stage('ExecutePerformanceTest'){
+            steps{
+                script{
+                    build job" 'live-execution-dashboard-perf-test',
+                }
             }
         }
     }
