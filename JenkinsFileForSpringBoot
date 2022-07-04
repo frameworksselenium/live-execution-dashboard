@@ -73,7 +73,7 @@ pipeline {
         stage('ExecutePerformanceTest'){
             steps{
                 script{
-                    build job" 'live-execution-dashboard-perf-test',
+                    build job: 'live-execution-dashboard-perf-test',
                 }
             }
         }
