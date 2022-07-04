@@ -29,8 +29,7 @@ pipeline {
 
         stage('ExecuteAPIFunctionalTest'){
            steps{
-                   sh "mvn -Dtest=IntegrationTest test"
-               }
+               sh "mvn -Dtest=IntegrationTest test"
            }
         }
         stage('ExecuteUIFunctionalTest'){
@@ -40,7 +39,6 @@ pipeline {
                     build job: 'Agile-add'
                 }
                 echo "=========================ExecuteUIFunctionalTest Ended========================="
-
             }
         }
         stage('ExecutePerformanceTest'){
