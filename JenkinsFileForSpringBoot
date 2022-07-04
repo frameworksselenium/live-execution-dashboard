@@ -27,23 +27,33 @@ pipeline {
 
 
 
-
+        stage('ExecuteAPIFunctionalTest'){
+           steps{
+                   sh "mvn -Dtest=IntegrationTest test"
+               }
+           }
+        }
         stage('ExecuteUIFunctionalTest'){
             steps{
+                echo "=========================ExecuteUIFunctionalTest Started========================="
                 script{
                     build job: 'Agile-add',
-                    parameters:[
-                        [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
-                        [$class: 'StringParameterValue', name: 'Browser', value: 'CH']
-                    ]
+                   // parameters:[
+                    //    [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
+                    //    [$class: 'StringParameterValue', name: 'Browser', value: 'CH']
+                    //]
                 }
+                echo "=========================ExecuteUIFunctionalTest Ended========================="
+
             }
         }
         stage('ExecutePerformanceTest'){
             steps{
+                echo "=========================ExecutePerformanceTest Started========================="
                 script{
                     build job: 'live-execution-dashboard-perf-test'
                 }
+                echo "=========================ExecutePerformanceTest Ended========================="
             }
         }
     }
