@@ -37,11 +37,7 @@ pipeline {
             steps{
                 echo "=========================ExecuteUIFunctionalTest Started========================="
                 script{
-                    build job: 'Agile-add'//,
-                   // parameters:[
-                    //    [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
-                    //    [$class: 'StringParameterValue', name: 'Browser', value: 'CH']
-                    //]
+                    build job: 'Agile-add'
                 }
                 echo "=========================ExecuteUIFunctionalTest Ended========================="
 
