@@ -27,11 +27,7 @@ pipeline {
 
 
 
-        stage('ExecuteAPIFunctionalTest'){
-           steps{
-               sh "mvn -Dtest=IntegrationTest test"
-           }
-        }
+
         stage('ExecuteUIFunctionalTest'){
             steps{
                 echo "=========================ExecuteUIFunctionalTest Started========================="
