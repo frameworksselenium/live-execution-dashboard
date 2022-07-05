@@ -31,7 +31,7 @@ pipeline {
                sh 'docker build -t  kmanubolu/live-execution-dashboard:${BUILD_NUMBER} .'
            }
         }
-        stage('Docker Login'){
+        stage('Docker Login') {
            steps {
                 withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')]) {
                    sh "docker login -u kmanubolu -p ${Dockerpwd}"
