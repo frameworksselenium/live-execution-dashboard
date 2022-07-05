@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Docker deploy'){
            steps {
-               sh 'sudo docker stop agitated_dewdney'
+               //sh 'sudo docker stop agitated_dewdney'
                sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
@@ -55,14 +55,14 @@ pipeline {
            }
         }
         stage('ExecuteAPIFunctionalTest'){
-           steps{
-                   sh "mvn -Dtest=IntegrationTest test"
+           steps {
+                sh "mvn -Dtest=IntegrationTest test"
            }
         }
         stage('ExecuteUIFunctionalTest'){
-            steps{
+            steps {
                 echo "=========================ExecuteUIFunctionalTest Started========================="
-                script{
+                script {
                     build job: 'live-execution-dashboard-ui-test',
                     parameters:[
                         [$class: 'StringParameterValue', name: 'Environment', value: 'QA'],
@@ -73,10 +73,10 @@ pipeline {
 
             }
         }
-        stage('ExecutePerformanceTest'){
-            steps{
+        stage('ExecutePerformanceTest') {
+            steps {
                 echo "=========================ExecutePerformanceTest Started========================="
-                script{
+                script {
                     build job: 'live-execution-dashboard-perf-test'
                 }
                 echo "=========================ExecutePerformanceTest Ended========================="
