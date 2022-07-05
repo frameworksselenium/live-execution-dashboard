@@ -25,7 +25,7 @@ pipeline {
            // }
         //}
         stage('Build Docker image'){
-           steps {
+           steps{
                echo "Hello Java Express"
                sh 'ls'
                sh 'docker build -t  kmanubolu/live-execution-dashboard:${BUILD_NUMBER} .'
