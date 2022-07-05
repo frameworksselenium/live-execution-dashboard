@@ -45,6 +45,7 @@ pipeline {
         }
         stage('Docker deploy'){
            steps {
+               sh 'sudo docker stop agitated_dewdney'
                sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
