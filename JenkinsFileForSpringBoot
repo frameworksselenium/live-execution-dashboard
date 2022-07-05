@@ -31,7 +31,7 @@ pipeline {
                sh 'docker build -t  kmanubolu/live-execution-dashboard:${BUILD_NUMBER} .'
            }
         }
-        stage('Docker Login') {
+        stage('Docker Hub Login') {
            steps {
                 withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')]) {
                    sh "docker login -u kmanubolu -p ${Dockerpwd}"
@@ -43,10 +43,16 @@ pipeline {
                sh 'docker push kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
+       // stage('Docker deploy'){
+        //   steps {
+         //      //sh 'sudo docker stop agitated_dewdney'
+           //    sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
+         //  }
+        //}
         stage('Docker deploy'){
            steps {
-               //sh 'sudo docker stop agitated_dewdney'
-               sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
+               sh 'sudo sh docker_kill.sh'
+               sh 'docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
         stage('Archving') {
