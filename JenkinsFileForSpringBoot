@@ -19,11 +19,11 @@ pipeline {
                 sh "mvn -Dtest=ServiceUnitTest test install sonar:sonar"
             }
         }
-        //stage('UploadArtifactsintoNexus'){
-         //   steps{
-           //     sh "mvn -DskipTests=true deploy"
-           // }
-        //}
+        stage('UploadArtifactsintoNexus'){
+            steps{
+                sh "mvn -DskipTests=true deploy"
+            }
+        }
         stage('Build Docker image'){
            steps {
                echo "Hello Java Express"
@@ -43,23 +43,17 @@ pipeline {
                sh 'docker push kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
-       // stage('Docker deploy'){
-        //   steps {
-         //      //sh 'sudo docker stop agitated_dewdney'
-           //    sh 'docker run -itd -p  8089:8089 kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
-         //  }
-        //}
         stage('Docker deploy'){
            steps {
                //sh 'sudo sh docker_kill.sh'
                sh 'docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
            }
         }
-        stage('Archving') {
-           steps {
-                archiveArtifacts '**/target/*.jar'
-           }
-        }
+        //stage('Archving') {
+         //  steps {
+           //     archiveArtifacts '**/target/*.jar'
+          // }
+       // }
         stage('ExecuteAPIFunctionalTest'){
            steps {
                 sh "mvn -Dtest=IntegrationTest test"
