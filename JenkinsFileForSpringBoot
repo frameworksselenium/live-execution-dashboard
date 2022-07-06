@@ -45,8 +45,11 @@ pipeline {
         }
         stage('Docker deploy'){
            steps {
-               sh 'sh docker_kill.sh'
-               sh 'docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
+               //sh 'sh docker_kill.sh'
+              //sh 'docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
+              sshagent(['ec2MachinesPemKey']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@54.88.93.45 sudo docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
+              }
            }
         }
         //stage('Archving') {
