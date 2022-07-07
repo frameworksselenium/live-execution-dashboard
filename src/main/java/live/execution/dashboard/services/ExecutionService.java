@@ -37,7 +37,7 @@ public class ExecutionService {
     }
 
     public int getMaxExecutionID(){
-    	return executionRepository.findAll().size()+1;
+    	return executionRepository.findAll().size() + 1;
     }
 
     public int getMaxExecutionID1(){
