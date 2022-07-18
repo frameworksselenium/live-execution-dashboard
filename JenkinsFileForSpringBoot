@@ -48,6 +48,8 @@ pipeline {
                //sh 'sh docker_kill.sh'
               //sh 'docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
               sshagent(['ec2MachinesPemKey']) {
+                    sh 'scp docker_kill.sh ubuntu@0.0.0.0:/home/ubuntu'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@54.88.93.45 sudo sh /home/ubuntu/docker_kill.sh'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@54.88.93.45 sudo docker run -itd -p  8089:8089 --name kmanubolu_dashboard kmanubolu/live-execution-dashboard:${BUILD_NUMBER}'
               }
            }
